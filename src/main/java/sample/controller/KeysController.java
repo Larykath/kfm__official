@@ -35,27 +35,25 @@ public class KeysController implements ElementController {
 
     public void init(Tab tab) {
         this.manageTab = tab;
-        System.out.println();
-        initializeListener();
-        keyListView = getKeyListView();
+//        System.out.println();
+//        keyListView = getKeyListView();
+        test();
+
     }
 
     public ListView<SimpleObjectProperty> getKeyListView() {
         if (null == keyListView) {
-            TabPane tabPanel = (TabPane) manageTab.getContent();
-            SplitPane splitPane = (SplitPane) tabPanel.getTabs().get(0).getContent();
-            AnchorPane anchorPane = (AnchorPane) splitPane.getItems().get(0);
-            ObservableList observableList = anchorPane.getChildren();
-            ListView listView = (ListView) observableList.get(0);
-            return listView;
+            AnchorPane anchorPane= (AnchorPane) manageTab.getContent();
+            System.out.println(anchorPane.getChildren());
+//            Tab tmpTab = (Tab) tabPanel.getTabs();
+//            SplitPane splitPane = (SplitPane) tabPanel.getTabs().get(0).getContent();
+//            AnchorPane anchorPane = (AnchorPane) splitPane.getItems().get(0);
+//            ObservableList observableList = anchorPane.getChildren();
+//            ListView listView = (ListView) observableList.get(0);
+//            return listView;
         }
 
         return keyListView;
-    }
-
-    private void initializeListener() {
-        test();
-
     }
 
     public void test() {
@@ -87,7 +85,7 @@ public class KeysController implements ElementController {
     }
 
     public void openKeyCreateWindow() throws IOException, NoSuchAlgorithmException, InvalidKeyException {
-        final VBox vBox = FXMLLoader.load((getClass().getResource("/fxml/keyCreate.fxml")));
+        final VBox vBox = FXMLLoader.load((getClass().getResource("/fxml/pgpGeneratorForm.fxml")));
         Stage secondaryStage = new Stage();
         Scene tmpSceene = new Scene(vBox, 0, 0);
         vBox.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {

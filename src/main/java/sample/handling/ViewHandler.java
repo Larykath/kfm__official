@@ -12,9 +12,6 @@ import sample.controller.FilesController;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.FileSystem;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,7 +46,11 @@ public class ViewHandler {
     }
 
     private void createAllStages() {
-
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/pgpGeneratorForm.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void openNewStage(Stage stageToChangeTo) throws IOException {
@@ -63,12 +64,6 @@ public class ViewHandler {
         }
 
     }
-
-//        Parent parent = FXMLLoader.load((getClass().getResource("/fxml/keyCreate.fxml")));
-//        Stage secondaryStage = new Stage();
-//        Scene tmpSceene = new Scene(parent, 0 , 0);
-//        secondaryStage.setScene(tmpSceene);
-//        secondaryStage.show();
 
     public void openNewStage(Stage stageToChangeTo, Scene sceneToChangeToo){
 

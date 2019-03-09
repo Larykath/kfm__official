@@ -19,7 +19,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/key.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/KFM-Manager.fxml"));
         final ObservableList componentList = root.getChildrenUnmodifiable();
         System.out.println(componentList);
         Manager manager = Manager.getInstance(componentList);

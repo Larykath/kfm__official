@@ -1,10 +1,8 @@
 package sample.applicationContext;
 
 import javafx.collections.ObservableList;
-import javafx.scene.Node;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.layout.HBox;
 import sample.controller.FilesController;
 import sample.controller.KeysController;
 import sample.controller.MessagesController;
@@ -20,14 +18,11 @@ public class Manager {
     private KeysController keys;
     private FilesController files;
     private MessagesController messages;
-    private AbstractController generalController;
-
-    private final List<Node> rawComponentList;
 
     private Manager(ObservableList rawComponentList) {
-        this.rawComponentList = rawComponentList;
-        generalController = new AbstractController(this.rawComponentList.get(2));
-        state = init(this.rawComponentList);
+        List<Tab> rawComponentList1 = ((TabPane) rawComponentList.get(0)).getTabs();
+//        generalController = new AbstractController(this.rawComponentList.get(2));
+        state = initControllers(rawComponentList1);
     }
 
     public static Manager getInstance(ObservableList componentList) {
@@ -40,26 +35,25 @@ public class Manager {
     }
 
 
-    private boolean init(List rawComponentList){
+    private boolean initControllers(List rawComponentList){
         int returnval = 0;
 
-        TabPane tabPane = (TabPane) rawComponentList.get(1);
-        List<Tab> componentList = tabPane.getTabs();
+        List<Tab> componentList = rawComponentList;
 
         keys = new KeysController();
         messages = new MessagesController();
 
-        if (componentList.get(0).getId().equals("0")){
-            keys.init(componentList.get(0));
+        if (componentList.get(0).getId().equals("keypass")){
+            keys.init(componentList.get(1));
             returnval++;
         }
 
-        if (componentList.get(1).getId().equals("1")){
-            files = new FilesController(componentList.get(1));
+        if (componentList.get(1).getId().equals("pgp")){
+            files = new FilesController(componentList.get(0));
             returnval++;
         }
 
-        if (componentList.get(2).getId().equals("2")){
+        if (componentList.get(2).getId().equals("mail")){
             messages.init(componentList.get(2));
             returnval++;
         }
